@@ -8,10 +8,12 @@ public class Student {
     private int year;
     private int balance;
 
-    private int studentID;
+    private String studentID;
     private String courses;
 
-    private int costOfCourse = 600;
+    // use static for variables that are supposed to remain constant
+    private static int costOfCourse = 600;
+    private static int id = 1000;
 
 
     /*
@@ -21,7 +23,7 @@ public class Student {
     */
     public Student() {
         Scanner in = new Scanner(System.in);
-        System.out.println("Enter first name: ");
+        System.out.println("\nEnter first name: ");
         this.firstName = in.nextLine();
 
         System.out.println("Enter last name: ");
@@ -29,10 +31,12 @@ public class Student {
 
         this.year = setYear();
 
-        System.out.print(this.firstName + " " + this.lastName + ", " + this.year);
-        //this.studentID = setID();
+        this.studentID = setStudentID();
 
+
+        System.out.print(this.firstName + " " + this.lastName + ", " + this.year+ ", " + this.studentID);
     }
+
     private int setYear() {
         System.out.println("Enter year level:\n 1) 1st Year\n 2) 2nd Year\n 3) 3rd Year\n 4) 4th Year");
 
@@ -54,8 +58,10 @@ public class Student {
     }
 
     // Generate ID
-    private int setID(){
-        return 1;
+    private String setStudentID(){
+        // studentID = year + static id
+        id++;
+        return year + "" + id;
     }
 
     // Enroll in courses
