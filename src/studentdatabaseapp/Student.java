@@ -1,15 +1,17 @@
 package studentdatabaseapp;
 
+import java.util.Objects;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Student {
     private String firstName;
     private String lastName;
     private int year;
-    private int balance;
+    private int balance = 0;
 
     private String studentID;
-    private String courses;
+    private ArrayList<String> courses;
 
     // use static for variables that are supposed to remain constant
     private static int costOfCourse = 600;
@@ -33,8 +35,10 @@ public class Student {
 
         this.studentID = setStudentID();
 
+        this.courses = enroll();
 
-        System.out.print(this.firstName + " " + this.lastName + ", " + this.year+ ", " + this.studentID);
+        System.out.println(this.firstName + " " + this.lastName + ", " + this.year+ ", " + this.studentID + ", " + "Courses: " + this.courses);
+        System.out.println("Balance: "+ this.balance);
     }
 
     private int setYear() {
@@ -65,6 +69,22 @@ public class Student {
     }
 
     // Enroll in courses
+    public ArrayList<String> enroll() {
+        ArrayList<String> studentCourses = new ArrayList<>();
+        System.out.println("Enter course to enroll (Q to finish enrollment): ");
+        System.out.println("Courses: Math 100, History 100, English 100, Chemistry 100");
+        Scanner in = new Scanner(System.in);
+        String course = in.nextLine();
+
+        while (!Objects.equals(course, "Q")) {
+            System.out.println("Add...");
+            studentCourses.add(course);
+            balance = balance + costOfCourse;
+            course = in.nextLine();
+        }
+        System.out.println("Successfully added courses!");
+        return studentCourses;
+    }
 
     // View Balance
 
