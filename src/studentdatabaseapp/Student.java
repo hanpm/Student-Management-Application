@@ -34,11 +34,8 @@ public class Student {
         this.year = setYear();
 
         this.studentID = setStudentID();
+        this.courses = setCourses();
 
-        this.courses = enroll();
-
-        System.out.println(this.firstName + " " + this.lastName + ", " + this.year+ ", " + this.studentID + ", " + "Courses: " + this.courses);
-        System.out.println("Balance: "+ this.balance);
     }
 
     private int setYear() {
@@ -69,7 +66,7 @@ public class Student {
     }
 
     // Enroll in courses
-    public ArrayList<String> enroll() {
+    private ArrayList<String> setCourses() {
         ArrayList<String> studentCourses = new ArrayList<>();
         System.out.println("Enter course to enroll (Q to finish enrollment): ");
         System.out.println("Courses: Math 100, History 100, English 100, Chemistry 100");
@@ -87,8 +84,23 @@ public class Student {
     }
 
     // View Balance
+    public int getBalance() {
+        return balance;
+    }
 
     // Pay tuition
+    public void payTuition(int payment) {
+        this.balance = balance - payment;
+    }
 
     // Display status of student
+    public String displayStats() {
+        return "\n\n==== STUDENT INFO ====\n"
+                + "First Name: " + this.firstName + "\n"
+                + "Last Name: " + this.lastName + "\n"
+                + "Year: " + this.year+ "\n"
+                + "ID: " + this.studentID + "\n"
+                + "Balance: " + this.balance + "\n"
+                + "Courses: " + this.courses;
+    }
 }
